@@ -1,5 +1,8 @@
 Dukens Louis
+<<<<<<< HEAD
 
+=======
+>>>>>>> 026c58ca789cc1f54b5873a4f037339cba8f30f2
 # :wave: The Basics of GitHub 
 
 ## 🤓 Course overview and learning outcomes 
