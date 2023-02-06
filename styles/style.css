@@ -52,6 +52,7 @@ button {
 #zero {
     grid-column: span 2;
 }
+/*This is the new class that was added to for new colors*/
 
 .operator {
     background-color: #FF8F1F;    
