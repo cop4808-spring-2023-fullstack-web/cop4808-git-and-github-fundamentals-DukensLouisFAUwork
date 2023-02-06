@@ -29,6 +29,8 @@ function clickButton() {
                 updateDisplay();
             } else if(buttons[i].classList.contains('operator')) {
                 inputOperator(buttons[i].value);
+            } else if(buttons[i].classList.contains('newButtons')) {
+                inputOperator(buttons[i].value);
             } else if(buttons[i].classList.contains('equals')) {
                 inputEquals();
                 updateDisplay();
@@ -94,7 +96,29 @@ function inputOperator(operator) {
         firstOperand = displayValue;
     }
 }
-
+function inputOperators(newButtons) {
+    if(firstOperator != null && secondOperator === null) {
+        //4th click - handles input of second operator
+        secondOperator = operator;
+        secondOperand = displayValue;
+        result = operate(Number(firstOperand), Number(secondOperand), firstOperator);
+        displayValue = roundAccurately(result, 15).toString();
+        firstOperand = displayValue;
+        result = null;
+    } else if(firstOperator != null && secondOperator != null) {
+        //6th click - new secondOperator
+        secondOperand = displayValue;
+        result = operate(Number(firstOperand), Number(secondOperand), secondOperator);
+        secondOperator = operator;
+        displayValue = roundAccurately(result, 15).toString();
+        firstOperand = displayValue;
+        result = null;
+    } else { 
+        //2nd click - handles first operator input
+        firstOperator = operator;
+        firstOperand = displayValue;
+    }
+}
 function inputEquals() {
     //hitting equals doesn't display undefined before operate()
     if(firstOperator === null) {
@@ -162,6 +186,7 @@ function inputBackspace() {
         updateDisplay();
     }
 }
+// This fucntion was updated to acomadte the new operations 
 
 function operate(x, y, op) {
     if(op === '+') {
@@ -170,6 +195,15 @@ function operate(x, y, op) {
         return x - y;
     } else if(op === '*') {
         return x * y;
+    } else if(op === 'mod') {
+        return x % y;
+    } else if(op === 'max') {
+        return Math.max(x,y);
+
+    } else if(op === 'min') {
+        return Math.min(x,y) ;
+    } else if(op === 'pow') {
+        return Math.pow(x,y);
     } else if(op === '/') {
         if(y === 0) {
             return 'lmao';
